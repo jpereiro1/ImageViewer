@@ -1,14 +1,15 @@
 package imageviewer.persistance;
 
 import imageviewer.model.Image;
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 
 public class FileImageLoader implements ImageLoader{
@@ -39,7 +40,7 @@ public class FileImageLoader implements ImageLoader{
         return new Image(){
             @Override
             public String name(){
-                return files[index].getName();
+                return files[index].getName();     
             }
 
             @Override
@@ -50,8 +51,23 @@ public class FileImageLoader implements ImageLoader{
                     return null;
                 }
             }
+
+            @Override
+            public int[] size() {
+                try{
+                    BufferedImage bfim = ImageIO.read(files[index]);
+                    int x = bfim.getWidth();
+                    int y = bfim.getHeight();
+                    return new int[]{x,y};
+                }catch(IOException e){
+                    return null;
+                }
+            }
+
         };
     }
+    
+    
                 
 
 
@@ -75,5 +91,9 @@ public class FileImageLoader implements ImageLoader{
         }
         return load();
     };
+
+
+
+        
     
 }

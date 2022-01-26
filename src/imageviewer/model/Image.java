@@ -8,6 +8,7 @@ public interface Image {
     
     String name();
     InputStream stream();
+    int[] size();
 
     
     
