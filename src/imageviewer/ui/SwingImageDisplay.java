@@ -2,13 +2,9 @@
 package imageviewer.ui;
 
 import imageviewer.model.Image;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -16,8 +12,6 @@ import javax.swing.JPanel;
 public class SwingImageDisplay extends JPanel implements ImageDisplay {
     
     private Image currentImage;
-    private int x;
-    private int y;
     
     @Override
     public Image current() {
